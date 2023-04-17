@@ -71,6 +71,8 @@ def main():
             labels = labels
         )
 
+
+        # wait fot 30 mil seconds and 27 plays as the escape in ascii table
         cv2.imshow('yolov8', frame)
         if(cv2.waitKey(30) == 27):
             break
