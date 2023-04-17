@@ -5,7 +5,7 @@ from ultralytics import YOLO
 import supervision as sv
 import numpy as np
 
-
+import extract
 def parse_arguments() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description = 'YoloV8 Plate Detection')
     parser.add_argument(
@@ -28,7 +28,7 @@ def load_sources(filename):
         img_type = False
         filename = 0 
     else:
-        img_type = filename.split('.')[-1] in img_format
+        img_type = filename.split('.')[-1].lower() in img_format
 
     # if filename is video or image
     if(img_type):
@@ -71,9 +71,9 @@ def main():
             labels = labels
         )
 
-
         # wait fot 30 mil seconds and 27 plays as the escape in ascii table
-        cv2.imshow('yolov8', frame)
+        cv2.imshow('Detected', frame)
+        extract.read_text(frame, detections)
         if(cv2.waitKey(30) == 27):
             break
 
