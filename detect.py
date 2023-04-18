@@ -6,6 +6,9 @@ import supervision as sv
 import numpy as np
 
 import extract
+from os.path import exists as file_exists
+
+
 def parse_arguments() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description = 'YoloV8 Plate Detection')
     parser.add_argument(
@@ -55,6 +58,11 @@ def main():
         text_thickness = 2,
         text_scale=1
     )
+    # create the csv file to hold the results if it is not existing
+    if (file_exists('detected.csv') == False):
+        extract.create_csv()
+    list = []
+    
     while True:
         if not img_type:
             ret, frame = cap.read()
@@ -73,7 +81,8 @@ def main():
 
         # wait fot 30 mil seconds and 27 plays as the escape in ascii table
         cv2.imshow('Detected', frame)
-        extract.read_text(frame, detections)
+        extract.read_text(frame, detections, list)
+        
         if(cv2.waitKey(30) == 27):
             break
 
