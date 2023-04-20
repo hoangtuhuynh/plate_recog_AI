@@ -52,7 +52,7 @@ def main():
         cap.set(cv2.CAP_PROP_FRAME_WIDTH, frame_width)
         cap.set(cv2.CAP_PROP_FRAME_HEIGHT, frame_height)
 
-    model = YOLO("best.pt")
+    model = YOLO(r".\model\best.onnx")
     box_annotator = sv.BoxAnnotator(
         thickness = 2,
         text_thickness = 2,
@@ -66,6 +66,7 @@ def main():
     while True:
         if not img_type:
             ret, frame = cap.read()
+        frame = cv2.resize(frame, (800, 800))
         result = model(frame, agnostic_nms=True)[0]
         detections = sv.Detections.from_yolov8(result)
         labels = [
@@ -78,7 +79,7 @@ def main():
             detections = detections,
             labels = labels
         )
-
+        
         # wait fot 30 mil seconds and 27 plays as the escape in ascii table
         cv2.imshow('Detected', frame)
         extract.read_text(frame, detections, list)
