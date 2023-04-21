@@ -6,7 +6,7 @@ import supervision as sv
 import numpy as np
 
 import extract
-from os.path import exists as file_exists
+import os
 
 
 def parse_arguments() -> argparse.Namespace:
@@ -52,25 +52,24 @@ def main():
         cap.set(cv2.CAP_PROP_FRAME_WIDTH, frame_width)
         cap.set(cv2.CAP_PROP_FRAME_HEIGHT, frame_height)
 
-    model = YOLO(r".\model\best.onnx")
+    yolo_model = YOLO(r".\model\best.pt")
     box_annotator = sv.BoxAnnotator(
         thickness = 2,
         text_thickness = 2,
         text_scale=1
     )
     # create the csv file to hold the results if it is not existing
-    if (file_exists('detected.csv') == False):
+    if not os.path.exists('detected.csv'):
         extract.create_csv()
     list = []
     
     while True:
         if not img_type:
             ret, frame = cap.read()
-        frame = cv2.resize(frame, (800, 800))
-        result = model(frame, agnostic_nms=True)[0]
+        result = yolo_model(frame, agnostic_nms=True)[0]
         detections = sv.Detections.from_yolov8(result)
         labels = [
-            f"{model.model.names[class_id]} {confidence:0.2f}"
+            f"{yolo_model.model.names[class_id]} {confidence:0.2f}"
             for _, confidence, class_id, _
             in detections
         ]
@@ -83,6 +82,7 @@ def main():
         # wait fot 30 mil seconds and 27 plays as the escape in ascii table
         cv2.imshow('Detected', frame)
         extract.read_text(frame, detections, list)
+        
         
         if(cv2.waitKey(30) == 27):
             break
