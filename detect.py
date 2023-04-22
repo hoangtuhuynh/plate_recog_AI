@@ -17,6 +17,7 @@ def parse_arguments() -> argparse.Namespace:
         type =int,
         nargs= 2
     )
+    parser.add_argument('--model', default= r".\model\best.pt", type=str)
     parser.add_argument("--source", default="0", type=str)
     args = parser.parse_args()
     return args
@@ -51,8 +52,8 @@ def main():
         frame_width, frame_height = args.webcam_resolution
         cap.set(cv2.CAP_PROP_FRAME_WIDTH, frame_width)
         cap.set(cv2.CAP_PROP_FRAME_HEIGHT, frame_height)
-
-    yolo_model = YOLO(r".\model\best.pt")
+    model = args.model
+    yolo_model = YOLO(model)
     box_annotator = sv.BoxAnnotator(
         thickness = 2,
         text_thickness = 2,
