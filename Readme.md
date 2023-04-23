@@ -22,6 +22,7 @@ The project uses Yolov8 format, python and EasyOCR to automatically detect the v
 - Install all the requirements required:<br>
 `pip install -r requirements.txt`
 - Run code: <br>
-`python -m detect --source 0` : Running with webcam <br>
-`python -m detect --source .\test_img\Cars8.png`: Running with image
+`python -m detect --source 0 --model .\model\best.pt` : Running with webcam <br>
+`python -m detect --source .\test_img\Cars8.png` --model .\model\best.pt: Running with image<br>
+`python -m detect --source .\test_img\videotest.mp4 --model .\model\best.pt`: Running with video
 
