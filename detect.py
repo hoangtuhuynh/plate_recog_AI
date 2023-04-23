@@ -17,8 +17,16 @@ def parse_arguments() -> argparse.Namespace:
         type =int,
         nargs= 2
     )
-    parser.add_argument('--model', default= r".\model\best.pt", type=str)
-    parser.add_argument("--source", default="0", type=str)
+    parser.add_argument(
+        '--model',   
+        default= r".\model\best.pt", 
+        type=str
+    )
+    parser.add_argument(
+        "--source", 
+        default="0", 
+        type=str
+    )
     args = parser.parse_args()
     return args
 def load_sources(filename):
