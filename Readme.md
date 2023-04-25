@@ -12,17 +12,17 @@ The project uses Yolov8 format, python and EasyOCR to automatically detect the v
 - Save the extracted text to csv file
 
 ### Running Processes:
-- Clone the folder:<br>
-`git clone https://github.com/hoangtuhuynh/plate_recog_AI.git` <br>
+- Clone the folder:<br><br>
+`git clone https://github.com/hoangtuhuynh/plate_recog_AI.git` <br><br>
 `cd plate_recog_AI`
-- Create the environment:<br>
+- Create the environment:<br><br>
 `python3 -m venv venv`
-- Activate the environment:<br>
+- Activate the environment:<br><br>
 `venv\Scripts\activate`
-- Install all the requirements required:<br>
+- Install all the requirements required:<br><br>
 `pip install -r requirements.txt`
-- Run code: <br>
-`python -m detect --source 0 --model .\model\best.pt` : Running with webcam <br>
-`python -m detect --source .\test_img\Cars8.png` --model .\model\best.pt: Running with image<br>
+- Run code: <br><br>
+`python -m detect --source 0 --model .\model\best.pt` : Running with webcam <br><br>
+`python -m detect --source .\test_img\Cars8.png` --model .\model\best.pt: Running with image<br><br>
 `python -m detect --source .\test_img\videotest.mp4 --model .\model\best.pt`: Running with video
 
