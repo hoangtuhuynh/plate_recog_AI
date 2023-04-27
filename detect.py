@@ -4,6 +4,7 @@ import argparse
 from ultralytics import YOLO
 import supervision as sv
 import numpy as np
+import onnxruntime as ort 
 
 import extract
 import os
@@ -61,7 +62,13 @@ def main():
         cap.set(cv2.CAP_PROP_FRAME_WIDTH, frame_width)
         cap.set(cv2.CAP_PROP_FRAME_HEIGHT, frame_height)
     model = args.model
-    yolo_model = YOLO(model)
+    if(model.split('.')[-1] == 'onnx'):
+        session = ort.InferenceSession(model)
+        input_name = session.get_inputs()[0].name
+        output_name = session.get_outputs()[0].name
+        #yolo_model = ONNXYOLO()
+    else:
+        yolo_model = YOLO(model)
     box_annotator = sv.BoxAnnotator(
         thickness = 2,
         text_thickness = 2,

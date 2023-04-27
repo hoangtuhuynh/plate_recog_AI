@@ -1,0 +1,14 @@
+names:
+- licence-plate
+- license-plate
+- plate
+nc: 3
+roboflow:
+  license: CC BY 4.0
+  project: license-plate-m1slf
+  url: https://universe.roboflow.com/new-workspace-quaiw/license-plate-m1slf/dataset/1
+  version: 1
+  workspace: new-workspace-quaiw
+test: test/images
+train: train/images
+val: valid/images
