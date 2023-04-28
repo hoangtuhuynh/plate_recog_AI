@@ -12,17 +12,36 @@ The project uses Yolov8 format, python and EasyOCR to automatically detect the v
 - Save the extracted text to csv file
 
 ### Running Processes:
-- Clone the folder:<br><br>
-`git clone https://github.com/hoangtuhuynh/plate_recog_AI.git` <br><br>
-`cd plate_recog_AI`
-- Create the environment:<br><br>
-`python3 -m venv venv`
-- Activate the environment:<br><br>
-`venv\Scripts\activate`
-- Install all the requirements required:<br><br>
-`pip install -r requirements.txt`
-- Run code: <br><br>
-`python -m detect --source 0 --model .\model\best.pt` : Running with webcam <br><br>
-`python -m detect --source .\test_img\Cars8.png` --model .\model\best.pt: Running with image<br><br>
-`python -m detect --source .\test_img\videotest.mp4 --model .\model\best.pt`: Running with video
+- Clone the folder:
+```base
+git clone https://github.com/hoangtuhuynh/plate_recog_AI.git
+```
+```base
+cd plate_recog_AI
+```
+- Create the environment:
+```base
+python3 -m venv venv
+```
+- Activate the environment:
+```base
+venv\Scripts\activate
+```
+- Install all the requirements required:
+```base
+pip install -r requirements.txt
+```
+- Run code:<br>
+1) Running with webcam
+```base
+python -m detect --source 0 --model .\model\best.pt
+```
+  2) Running with image
+```base
+python -m detect --source .\test_img\Cars8.png --model \model\best.pt
+```
+3) Running with video 
+```base
+python -m detect --source .\test_img\videotest.mp4 --model .\model\best.pt
+```
 
