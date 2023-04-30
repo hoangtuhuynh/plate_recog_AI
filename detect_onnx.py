@@ -2,6 +2,7 @@ import torch
 import onnxruntime as ort
 import numpy as np
 import cv2
+from yolo import YOLOV8
 
 def main():
     model = r'.\model\best.onnx'
