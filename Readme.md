@@ -31,7 +31,8 @@ venv\Scripts\activate
 ```base
 pip install -r requirements.txt
 ```
-- Run code:<br>
+
+#### Using PyTorch model
 1) Running with webcam
 ```base
 python -m detect --source 0 --model .\model\best.pt
@@ -45,3 +46,18 @@ python -m detect --source .\test_img\Cars8.png --model \model\best.pt
 python -m detect --source .\test_img\videotest.mp4 --model .\model\best.pt
 ```
 
+#### Using ONNX model without GPU
+1) Running with webcam
+```base
+python -m detect --source 0 --model .\model\best.onnx
+```
+  2) Running with image
+```base
+python -m detect --source .\test_img\Cars8.png --model \model\best.onnx
+```
+3) Running with video 
+```base
+python -m detect --source .\test_img\videotest.mp4 --model .\model\best.onnx
+```
+
+ 

@@ -8,9 +8,10 @@ class_name = ['licence-plate', 'license-plate', 'plate']
 
 class YOLOV8:
     
-    def __init__(self, model, conf_thres = 0.5, iou_thres = 0.5):
+    def __init__(self, model, class_name, conf_thres = 0.5, iou_thres = 0.5):
         self.conf_thres = conf_thres
         self.iou_thres = iou_thres
+        self.class_name = class_name
 
         # intitialize the model
         self.model_initialize(model)

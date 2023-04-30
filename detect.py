@@ -5,10 +5,12 @@ from ultralytics import YOLO
 import supervision as sv
 import numpy as np
 import onnxruntime as ort 
+#from yolo.yolov8 import YOLOV8 
 
 import extract
 import os
 
+class_name = ['licence-plate', 'license-plate', 'plate']
 
 def parse_arguments() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description = 'YoloV8 Plate Detection')
@@ -51,6 +53,12 @@ def load_sources(filename):
         cap = cv2.VideoCapture(filename)
     return img_type, cap, frame, key
 
+def choose_label(model):
+    if model.split('.')[-1] == 'onnx':
+        return 1
+    return 0
+
+
 def main():
     # command line arguments
     args = parse_arguments()
@@ -62,6 +70,7 @@ def main():
         cap.set(cv2.CAP_PROP_FRAME_WIDTH, frame_width)
         cap.set(cv2.CAP_PROP_FRAME_HEIGHT, frame_height)
     model = args.model
+    flag = choose_label(model)
     yolo_model = YOLO(model)
     box_annotator = sv.BoxAnnotator(
         thickness = 2,
@@ -79,6 +88,7 @@ def main():
         result = yolo_model(frame, agnostic_nms=True)[0]
         detections = sv.Detections.from_yolov8(result)
         labels = [
+            f"{class_name[class_id]} {confidence:0.2f}" if flag == 1 else
             f"{yolo_model.model.names[class_id]} {confidence:0.2f}"
             for _, confidence, class_id, _
             in detections
