@@ -12,6 +12,7 @@ The project uses Yolov8 format, python and EasyOCR to automatically detect the v
 - Save the extracted text to csv file
 
 ### Running Processes:
+For Windows
 - Clone the folder:
 ```base
 git clone https://github.com/hoangtuhuynh/plate_recog_AI.git
